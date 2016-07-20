@@ -20,7 +20,9 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".ProductActivity" />
-        <activity android:name=".DetailProductActivity"></activity>
+        <activity android:name=".DetailProductActivity" />
+        <activity android:name=".DetailImageActivity" />
+        <activity android:name=".SplashActivity"></activity>
     </application>
 
 </manifest>
