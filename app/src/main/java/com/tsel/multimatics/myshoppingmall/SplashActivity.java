@@ -16,6 +16,8 @@ public class SplashActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         appPreference = new AppPreference(SplashActivity.this);
+
+        new DelayAsync().execute();
     }
 
     class DelayAsync extends AsyncTask<Void, Void, Void> {
@@ -38,7 +40,12 @@ public class SplashActivity extends AppCompatActivity {
 
             if (appPreference.getUsername().equals("")) {
                 intent = new Intent(SplashActivity.this, LoginActivity.class);
+            } else {
+                intent = new Intent(SplashActivity.this, HomeActivity.class);
             }
+
+            startActivity(intent);
+            finish();
         }
     }
 }
