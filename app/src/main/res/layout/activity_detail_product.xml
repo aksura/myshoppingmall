@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.tsel.multimatics.myshoppingmall.DetailProductActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="270dp"
+                android:adjustViewBounds="true"
+                android:id="@+id/img_detail"
+                android:layout_marginBottom="16dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="40dp"
+                android:id="@+id/tv_name"
+                android:text="Product Name"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:gravity="center"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="40dp"
+                android:id="@+id/tv_price"
+                android:text="Product Price"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:gravity="center"/>
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dropdown"
+                android:id="@+id/spinner_size"
+                android:padding="16dp">
+            </Spinner>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="40dp"
+                android:id="@+id/tv_desc"
+                android:text="Product Desc"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/add_to_chart"
+        android:text="Add To Chart"/>
+</LinearLayout>
