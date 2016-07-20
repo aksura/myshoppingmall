@@ -3,6 +3,7 @@ package com.tsel.multimatics.myshoppingmall;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -11,11 +12,16 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-public class DetailProductActivity extends AppCompatActivity {
+import static android.view.View.*;
+
+public class DetailProductActivity extends AppCompatActivity implements
+        OnClickListener{
 
     private TextView tvName, tvPrice, tvDesc;
     private Button btnAddChart;
     private ImageView imgDetail;
+
+    private ImageView[] imgThumb = new ImageView[4];
     private Spinner spinner;
 
     final private String DESKRIPSI = "Tambora diciptakan untuk teman berpetualang, apapun aktivitasnya. Sesuai namanya yang gahar, " +
@@ -35,7 +41,12 @@ public class DetailProductActivity extends AppCompatActivity {
 
         imgDetail = (ImageView) findViewById(R.id.img_detail);
 
-        spinner = (Spinner) findViewById(R.id.spinner_size);
+        imgThumb[0] = (ImageView) findViewById(R.id.img_thumb1);
+        imgThumb[1] = (ImageView) findViewById(R.id.img_thumb2);
+        imgThumb[2] = (ImageView) findViewById(R.id.img_thumb3);
+        imgThumb[3] = (ImageView) findViewById(R.id.img_thumb4);
+
+                spinner = (Spinner) findViewById(R.id.spinner_size);
 
         getSupportActionBar().setTitle("Detail Product");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -46,6 +57,11 @@ public class DetailProductActivity extends AppCompatActivity {
         tvPrice.setText(selected_product.getPrice());
         tvDesc.setText(DESKRIPSI);
         Glide.with(DetailProductActivity.this).load(selected_product.getImageURL()).into(imgDetail);
+
+        for (int i = 0; i < imgThumb.length; i++) {
+            Glide.with(DetailProductActivity.this).load(SampleData.thumb[i]).into(imgThumb[i]);
+            imgThumb[i].setOnClickListener(this);
+        }
 
 
         String size[] = new String[] {
@@ -67,5 +83,28 @@ public class DetailProductActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View view) {
+        String imageURL = null;
+        switch (view.getId()) {
+            case R.id.img_thumb1:
+                imageURL = SampleData.thumb[0];
+                break;
+            case R.id.img_thumb2:
+                imageURL = SampleData.thumb[1];
+                break;
+            case R.id.img_thumb3:
+                imageURL = SampleData.thumb[2];
+                break;
+            case R.id.img_thumb4:
+                imageURL = SampleData.thumb[3];
+                break;
+        }
+
+        if (imageURL != null) {
+            Glide.with(DetailProductActivity.this).load(imageURL).into(imgDetail);
+        }
     }
 }
