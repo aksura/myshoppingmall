@@ -1,5 +1,6 @@
 package com.tsel.multimatics.myshoppingmall;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,13 +11,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+import com.loopj.android.http.RequestParams;
+import com.tsel.multimatics.myshoppingmall.api.request.PostLoginRequest;
+import com.tsel.multimatics.myshoppingmall.api.response.User;
+
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener,
+        PostLoginRequest.onPostLoginRequestListener{
 
     private TextView txRegister;
     private Button btnLogin;
+    private ProgressDialog progressDialog;
 
     private EditText editUsername, editPasswd;
 
+    private PostLoginRequest postLoginRequest;
     private AppPreference appPreference;
 
     @Override
@@ -61,9 +69,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     Toast.makeText(LoginActivity.this, "All fields are required", Toast.LENGTH_SHORT).show();
                 } else {
                     appPreference.setUsername(username);
-                    intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    intent = new Intent(LoginActivity.this, HomeActivity3.class);
 
                     isLogin = true;
+
+//                    RequestParams requestParams = new RequestParams();
+//                    requestParams.put("username", username);
+//                    requestParams.put("password", passwd);
+//
+//                    postLoginRequest.setRequestParams(requestParams);
+//                    progressDialog.show();
+//                    postLoginRequest.callApi();
                 }
 
 
@@ -78,5 +94,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
 
 
+    }
+
+    @Override
+    public void onPostLoginSuccess(User user) {
+        progressDialog.cancel();
+        appPreference.setUserid(user.getUserId());
+
+        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void onPostLoginFailure(String errorMessage) {
+        progressDialog.cancel();
+        Toast.makeText(LoginActivity.this, "Wrong password / username", Toast.LENGTH_SHORT).show();
     }
 }

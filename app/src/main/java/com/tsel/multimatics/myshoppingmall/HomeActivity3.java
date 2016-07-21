@@ -1,8 +1,11 @@
 package com.tsel.multimatics.myshoppingmall;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -79,21 +82,46 @@ public class HomeActivity3 extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
+        Intent mIntent = null;
         if (id == R.id.nav_notifikasi) {
             // Handle the camera action
         } else if (id == R.id.nav_kategori) {
-
+            mIntent = new Intent(HomeActivity3.this, MainActivity.class);
         } else if (id == R.id.nav_order_history) {
 
         } else if (id == R.id.nav_logout) {
-
+            showLogoutAlertDialog();
         } else if (id == R.id.nav_about) {
 
+        }
+
+        if (mIntent != null){
+            startActivity(mIntent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void showLogoutAlertDialog(){
+        AlertDialog mAlertDialog = new AlertDialog.Builder(HomeActivity3.this)
+                .setTitle("Logout")
+                .setMessage("Apakah anda yakin untuk logout?")
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        AppPreference appPreference = new AppPreference(HomeActivity3.this);
+                        appPreference.clear();
+                        finish();
+                    }
+                })
+                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                }).create();
+        mAlertDialog.show();
     }
 }
