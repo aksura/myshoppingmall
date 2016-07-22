@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.loopj.android.http.RequestParams;
 import com.tsel.multimatics.myshoppingmall.api.request.PostLoginRequest;
 import com.tsel.multimatics.myshoppingmall.api.response.User;
 
@@ -69,7 +68,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     Toast.makeText(LoginActivity.this, "All fields are required", Toast.LENGTH_SHORT).show();
                 } else {
                     appPreference.setUsername(username);
-                    intent = new Intent(LoginActivity.this, HomeActivity3.class);
+                    intent = new Intent(LoginActivity.this, HomeActivity.class);
 
                     isLogin = true;
 

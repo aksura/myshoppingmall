@@ -14,7 +14,9 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".ProductActivity" />
-        <activity android:name=".DetailProductActivity" />
+        <activity
+            android:name=".DetailProductActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".DetailImageActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>
@@ -23,11 +25,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HomeActivity" />
         <activity
-            android:name=".HomeActivity3"
+            android:name=".HomeActivity"
             android:label="@string/title_activity_home3"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".CartActivity"></activity>
     </application>
 
 </manifest>

@@ -25,7 +25,7 @@ public class SplashActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... params) {
             try {
-                Thread.sleep(3000);
+                Thread.sleep(1000);
             }catch (Exception e) {
             }
 
